@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkiraan Jumlah Pesanan Makanan di Restoran</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="https://icons.veryicon.com/png/o/animal/multicolor-animal-icon/giant-panda-01.png">
+</head>
+<body>
+    <div class="container">
+        <h1>Perkiraan Jumlah Pesanan Makanan di Restoran</h1>
+        <p>Dalam sebuah restoran, sangat penting untuk memperkirakan jumlah pesanan makanan dalam satu jam tertentu untuk memastikan persediaan bahan makanan yang cukup dan layanan yang efisien. Dengan menggunakan distribusi Poisson, kita dapat menghitung probabilitas berbagai skenario jumlah pesanan berdasarkan rata-rata pesanan yang diterima. Berikut adalah hasil perkiraan jumlah pesanan makanan di restoran:</p>
+        <form id="poisson-form">
+            <div class="label-input-group">
+                <label for="lambda">Rata-rata Pesanan (<span class="math">λ</span>):</label>
+                <input type="number" id="lambda" name="lambda" step="0.1" required>
+            </div>
+            <div class="label-input-group">
+                <label for="k">Jumlah Pesanan (<span class="math">k</span>):</label>
+                <input type="number" id="k" name="k" required>
+            </div>
+            <div class="button-container">
+                <button type="button" id="reset">Reset</button>
+                <button type="button" id="hitung">Hitung</button>
+            </div>
+        </form>
+        <div id="hasil" style="display: none;">
+            <h3>Tabel: Input Pengguna</h3>
+            <table id="tabel-input">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Nilai</th>
+                </tr>
+                <tr>
+                    <td>Rata-rata Pesanan (<span class="math">λ</span>)</td>
+                    <td id="nilai-lambda"></td>
+                </tr>
+                <tr>
+                    <td>Jumlah Pesanan (<span class="math">k</span>)</td>
+                    <td id="nilai-k"></td>
+                </tr>
+            </table>
+            <h3>Tabel: Probabilitas Pesanan Berdasarkan Input Pengguna</h3>
+            <table id="tabel-probabilitas">
+                <tr>
+                    <th>Skenario</th>
+                    <th>Probabilitas</th>
+                </tr>
+                <tr>
+                    <td>Tepat sekali <span id="nilai-k-1"></span> pesanan P(<span class="math"> X  </span> = <span id="nilai-k-2"></span>)</td>
+                    <td id="probabilitas-tepat"></td>
+                </tr>
+                <tr>
+                    <td>Kurang dari <span id="nilai-k-3" ></span> pesanan P(<span class="math"> X  </span> &lt; <span id="nilai-k-4"></span>)</td>
+                    <td id="probabilitas-kurang"></td>
+                </tr>
+                <tr>
+                    <td>Paling banyak <span id="nilai-k-5" ></span> pesanan P(<span class="math"> X  </span> &le; <span id="nilai-k-6" ></span>)</td>
+                    <td id="probabilitas-paling"></td>
+                </tr>
+                <tr>
+                    <td>Lebih dari <span id="nilai-k-7" ></span> pesanan P(<span class="math"> X  </span> &gt; <span id="nilai-k-8" ></span>)</td>
+                    <td id="probabilitas-lebih"></td>
+                </tr>
+                <tr>
+                    <td>Setidaknya <span id="nilai-k-9" ></span> pesanan P(<span class="math"> X </span> &ge; <span id="nilai-k-10" ></span>)</td>
+                    <td id="probabilitas-setidaknya"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
